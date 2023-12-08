@@ -1,0 +1,8 @@
+# Ignore le dossier virtuel Python (venv)
+venv/
+
+# Ignore le fichier requirements.txt
+requirements.txt
+
+# Ignore le fichier README.md
+README.md
