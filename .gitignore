@@ -1,7 +1,7 @@
 # Ignore le dossier virtuel Python (venv)
 venv/
 
-# Ignore le fichier requirements.txt
+players_infos.json
 requirements.txt
 
 # Ignore le fichier README.md

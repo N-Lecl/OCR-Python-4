@@ -1,36 +1,64 @@
-from controllers.tournament_controller import TournamentController
 from controllers.player_controller import PlayerController
-from controllers.round_controller import RoundController
-from views.tournament_view import TournamentView
-from views.player_view import PlayerView
-from views.round_view import RoundView
-from models.tournament import Tournament
-from models.player import Player
-from models.round import Round
+
 
 class MainController:
     def __init__(self):
-        self.tournament = Tournament("Chess Masters", "City Hall", "2023-01-01", "2023-01-07")
-        self.tournament_view = TournamentView()
-        self.tournament_controller = TournamentController(self.tournament, self.tournament_view)
+        self.player_controller = PlayerController(None, None) 
 
-        # For simplicity, let's create a player and a round for testing
-        player = Player("John", "Doe", "1990-01-01", "AB12345")
-        player_view = PlayerView()
-        player_controller = PlayerController(player, player_view)
-
-        round_1 = Round("Round 1")
-        round_view = RoundView()
-        round_controller = RoundController(round_1, round_view)
 
     def run(self):
-        # Simulate user actions
-        self.tournament_controller.display_tournament_details()
-        print("\n=== Simulating Player Details ===")
-        self.tournament_controller.display_round_details(1)
+        while True:
+            print("\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+            print("   ___         _   _                   _        _____                             _ ")
+            print("  / _ \___ ___| |_(_) ___  _ __     __| | ___  /__   \___  _   _ _ __ _ __   ___ (_)")
+            print(" / /_\/ _ / __| __| |/ _ \| '_ \   / _` |/ _ \   / /\/ _ \| | | | '__| '_ \ / _ \| |")
+            print("/ /_\|  __\__ | |_| | (_) | | | | | (_| |  __/  / / | (_) | |_| | |  | | | | (_) | |")
+            print("\____/\___|___/\__|_|\___/|_| |_|  \__,_|\___|  \/   \___/ \__,_|_|  |_| |_|\___/|_|")
+            print("\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+            
+            print("\n1. Gérer les joueurs")
+            print("2. Gérer les tournois")
+            print("3. Quitter")
 
-        print("\n=== Simulating Round Details ===")
-        round_controller.display_round_details()
+            choice = input("\nChoisissez une option (1, 2, ou 3): ")
+
+            if choice == "1":
+                self.player_menu()
+            elif choice == "2":
+                self.tournament_menu()
+            elif choice == "3":
+                print("Merci d'avoir utilisé l'application. Au revoir!")
+                break
+            else:
+                print("Option invalide. Veuillez choisir une option valide.")
+
+    def player_menu(self):
+        while True:
+            print("\n::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+            print("                            __                                  ")
+            print("  /\/\   ___ _ __  _   _    \ \  ___  _   _  ___ _   _ _ __ ___ ")
+            print(" /    \ / _ | '_ \| | | |    \ \/ _ \| | | |/ _ | | | | '__/ __|")
+            print("/ /\/\ |  __| | | | |_| | /\_/ | (_) | |_| |  __| |_| | |  \__ \ ")
+            print("\/    \/\___|_| |_|\__,_| \___/ \___/ \__,_|\___|\__,_|_|  |___/")
+            print("\n::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+        
+            print("\n1. Ajouter un joueur")
+            print("2. Voir la liste des joueurs")
+            print("3. Retour au menu principal")
+
+            choice = input("\nChoisissez une option (1, 2, ou 3): ")
+
+            if choice == "1":
+                self.player_controller.add_player_menu() 
+            elif choice == "2":
+                self.player_controller.display_all_players()  
+            elif choice == "3":
+                break
+            else:
+                print("Option invalide. Veuillez choisir une option valide.")
+
+    def tournament_menu(self):
+        print("Fonctionnalité à implémenter dans TournamentController.")
 
 if __name__ == "__main__":
     main_controller = MainController()
