@@ -1,6 +1,6 @@
 # Ignore le dossier virtuel Python (venv)
 venv/
-
+tournament_info.json
 players_infos.json
 requirements.txt
 
