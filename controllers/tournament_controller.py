@@ -94,9 +94,16 @@ class TournamentController:
                 'end_date': self.tournament.end_date,
                 'num_rounds': self.tournament.num_rounds,
                 'current_round': self.tournament.current_round,
-                'registered_players': [player.__dict__ for player in self.tournament.registered_players],
+                'registered_players': [],
                 'description': self.tournament.description
             }
+
+            for player in self.tournament.registered_players:
+                if isinstance(player, Player):
+                    tournament_data['registered_players'].append(player.__dict__)
+                elif isinstance(player, dict):
+                    tournament_data['registered_players'].append(player)
+
             json.dump(tournament_data, file)
 
     def load_tournament_from_json(self, filename):
