@@ -36,50 +36,35 @@ class TournamentController:
                 if self.tournament is None:
                     self.load_tournament_from_json('tournament_info.json')
 
-                # Afficher la liste des joueurs disponibles
-                print("Liste des joueurs disponibles :")
-                for index, player in enumerate(available_players, start=1):
-                    print(f"{index}. {player.first_name} {player.last_name}")
+                # Afficher la liste des joueurs disponibles dans la vue
+                self.tournament_view.display_add_player_to_tournament_menu([(player.first_name, player.last_name) for player in available_players])
 
                 # Demander à l'utilisateur de choisir des joueurs
                 while True:
-                    choice = input("\nChoisissez le numéro du joueur à ajouter au tournoi (0 pour terminer) : ")
+                    choice = self.tournament_view.get_selected_player(available_players)
                     if choice == "0":
                         break
-                    elif choice.isdigit():
+                    else:
                         index = int(choice) - 1
                         if 0 <= index < len(available_players):
                             selected_player = available_players.pop(index)
                             self.tournament.registered_players.append(selected_player)
-                            print(f"Joueur ajouté au tournoi : {selected_player.first_name} {selected_player.last_name}")
+                            # Afficher le joueur ajouté dans la vue
+                            self.tournament_view.display_player_added_to_tournament((selected_player.first_name, selected_player.last_name))
                         else:
-                            print("Numéro de joueur invalide. Veuillez choisir un numéro valide.")
-                    else:
-                        print("Veuillez entrer un numéro valide.")
+                            # Afficher un message d'erreur dans la vue
+                            self.tournament_view.display_players_added_successfully()
 
-            # Sauvegarder les modifications dans le fichier tournament_info.json
-            self.save_tournament_to_json('tournament_info.json')
-            print("Les joueurs ont été ajoutés avec succès au tournoi.")
+                # Sauvegarder les modifications dans le fichier tournament_info.json
+                self.save_tournament_to_json('tournament_info.json')
+                # Afficher un message de succès dans la vue
+                self.tournament_view.display_players_added_successfully()
         except FileNotFoundError:
-            print("\nLe fichier JSON des joueurs n'a pas été trouvé.")
+            # Afficher un message d'erreur dans la vue
+            self.tournament_view.display_players_file_not_found()
 
-    def generate_pairings(self):
-        current_round = self.tournament.current_round
-        if current_round > self.tournament.num_rounds:
-            print("Le tournoi est terminé.")
-            return
 
-        round_name = f"Round {current_round}"
-        new_round = Round(name=round_name)
-        players = self.tournament.registered_players
-
-        for i in range(0, len(players), 2):
-            match = Match(players[i], players[i + 1])
-            new_round.matches.append(match)
-
-        self.tournament.rounds.append(new_round)
-        self.tournament.current_round += 1
-        print(f"Appariements générés pour {round_name}")
+    
     #TODO: use load_tournament_from_json
     def display_tournament_details(self):
         try:
@@ -121,7 +106,7 @@ class TournamentController:
 
                 # Convertir les données des joueurs en objets Player
                 player_data_list = tournament_data.get('registered_players', [])
-                players = [Player(**player_data) for player_data in player_data_list]
+                players = [Player(**player_data) if isinstance(player_data, dict) else player_data for player_data in player_data_list]
 
                 # Mettre à jour le dictionnaire avec la liste d'objets Player
                 tournament_data['registered_players'] = players
