@@ -50,31 +50,9 @@ class TournamentView:
                 print(f"  - {player_data.first_name} {player_data.last_name}")
 
         print(f"Description: {tournament.description}")
-        
-    def display_add_player_to_tournament_menu(self, available_players):
-        Utils.clear_terminal()
-        print("\n::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
-        print("")
-        print(" █████╗      ██╗ ██████╗ ██╗   ██╗████████╗    ██████╗ ██╗   ██╗███╗   ██╗         ██╗ ██████╗ ██╗   ██╗███████╗██╗   ██╗██████╗ ")
-        print("██╔══██╗     ██║██╔═══██╗██║   ██║╚══██╔══╝    ██╔══██╗██║   ██║████╗  ██║         ██║██╔═══██╗██║   ██║██╔════╝██║   ██║██╔══██╗") 
-        print("███████║     ██║██║   ██║██║   ██║   ██║       ██║  ██║██║   ██║██╔██╗ ██║         ██║██║   ██║██║   ██║█████╗  ██║   ██║██████╔╝")
-        print("██╔══██║██   ██║██║   ██║██║   ██║   ██║       ██║  ██║██║   ██║██║╚██╗██║    ██   ██║██║   ██║██║   ██║██╔══╝  ██║   ██║██╔══██╗")
-        print("██║  ██║╚█████╔╝╚██████╔╝╚██████╔╝   ██║       ██████╔╝╚██████╔╝██║ ╚████║    ╚█████╔╝╚██████╔╝╚██████╔╝███████╗╚██████╔╝██║  ██║")
-        print("╚═╝  ╚═╝ ╚════╝  ╚═════╝  ╚═════╝    ╚═╝       ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝     ╚════╝  ╚═════╝  ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═╝")
-        print("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
-        print("")
-        print("")
-        print("Liste des joueurs disponibles :")
-        for index, player in enumerate(available_players, start=1):
-            print(f"{index}. {player.first_name} {player.last_name}")
 
-        print("\n1. Ajouter un joueur au tournoi")
-        print("2. Retour au menu principal")
-
-        choice = input("\nChoisissez une option (1 ou 2) : ")
-        return choice
     
-    def display_add_player_to_tournament_menu(self, available_players):
+    def display_add_player_to_tournament_menu(self, available_players, registered_players=None):
         Utils.clear_terminal()
         print("\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
         print("")
@@ -89,12 +67,45 @@ class TournamentView:
         print("")
         print("")
         print("Liste des joueurs disponibles :")
-        for index, (first_name, last_name) in enumerate(available_players, start=1):
+
+        # Filtrer les joueurs déjà inscrits
+        available_players_filtered = [player for player in available_players if player not in registered_players]
+
+        # Réinitialiser les numéros
+        indexed_players = list(enumerate(available_players_filtered, start=1))
+
+        for index, (first_name, last_name) in indexed_players:
             print(f"{index}. {first_name} {last_name}")
 
-    def get_selected_player(self, available_players):
-        choice = input("\nChoisissez le numéro du joueur à ajouter au tournoi (0 pour terminer) : ")
-        return choice
+        # Afficher les joueurs déjà présents dans le tournoi
+        if registered_players:
+            print("\nJoueurs déjà présents dans le tournoi :")
+            for player_info in registered_players:
+                first_name, last_name = player_info
+                print(f"{first_name} {last_name}")
+
+    def get_selected_player(self, available_players, registered_players):
+        while True:
+            choice = input("\nChoisissez le numéro du joueur à ajouter au tournoi (0 pour terminer) : ")
+            if choice == "0":
+                break
+            elif choice.isdigit():
+                index = int(choice) - 1
+                if 0 <= index < len(available_players):
+                    selected_player = available_players[index]
+                    # Vérifier si le nom du joueur est déjà présent dans la liste des joueurs du tournoi
+                    if f"{selected_player.first_name} {selected_player.last_name}" not in [f"{player.first_name} {player.last_name}" for player in registered_players]:
+                        return selected_player
+                    else:
+                        print("Le joueur est déjà présent dans le tournoi. Veuillez choisir un autre joueur.")
+                else:
+                    print("Option invalide. Veuillez choisir un numéro valide.")
+            else:
+                print("Option invalide. Veuillez choisir un numéro valide.")
+        return None
+
+
+
 
     def display_player_added_to_tournament(self, player_info):
         first_name, last_name = player_info
@@ -105,3 +116,10 @@ class TournamentView:
 
     def display_players_file_not_found(self):
         print("\nLe fichier JSON des joueurs n'a pas été trouvé.")
+
+    def display_current_round_matches(self, current_round):
+        Utils.clear_terminal()
+        print(f"\nAffichage des matchs pour le {current_round} tour :")
+        for match in current_round.matches:
+            player1, player2 = match.players
+            print(f"{player1.full_name()} vs {player2.full_name()}")

@@ -102,9 +102,10 @@ class MainController:
             print("2. Ajouter des joueurs au tournoi")
             print("3. Générer les appariements pour le prochain tour")
             print("4. Afficher les détails du tournoi")
-            print("5. Retour au menu principal")
+            print("5. Lancer le Tournoi")
+            print("6. Retour au menu principal")
 
-            choice = input("\nChoisissez une option (1, 2, 3, 4, ou 5): ")
+            choice = input("\nChoisissez une option (1, 2, 3, 4, 5, ou 6): ")
 
             if choice == "1":
                 self.tournament_controller.create_tournament()
@@ -116,6 +117,8 @@ class MainController:
             elif choice == "4":
                 self.tournament_controller.display_tournament_details()
             elif choice == "5":
+                self.tournament_controller.start_tournament()
+            elif choice == "6":
                 break
             else:
                 print("Option invalide. Veuillez choisir une option valide.")
