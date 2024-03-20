@@ -272,7 +272,6 @@ class CreerTournoiControleur:
         self.infos_tournoi.append(self.ajout_nom())
         self.infos_tournoi.append(self.ajout_lieu())
         self.infos_tournoi.append(self.ajout_date())
-        # self.infos_tournoi.append(self.ajout_controle_temps())
         self.infos_tournoi.append(self.ajout_description())
         self.infos_tournoi.append(self.ajout_nombre_tours())
         self.infos_tournoi.append(self.ajout_nombre_joueurs())

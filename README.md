@@ -1,4 +1,4 @@
-# Chess-tourney-manager
+# Logiciel de tournoi d’échecs
 Programme autonome de gestion de tournois d'échecs, qui fonctionne hors ligne et exécutable dans une console.
 
 Le programme utilise la librairie TinyDB pour sauvegarder les joueurs et les tournois.
@@ -16,12 +16,12 @@ Il permet de :
 
 ### 1 - Télécharger les fichiers
 * Télécharger le zip depuis le lien: 
-[https://github.com/[...]/main.zip](https://github.com/Wil31/chess-tourney-manager/archive/refs/heads/main.zip)
+[https://github.com/[...]/main.zip](https://github.com/N-Lecl/OCR-Python-4/archive/refs/heads/main.zip)
 * Extraire le zip
 
 ### 2 - Configurer virtual environment
 * Ouvrir un terminal
-* Naviguer vers le dossier extrait _([...]\chess-tourney-manager)_
+* Naviguer vers le dossier extrait _([...]\OCR-Python-4-main)_
 * Créer un environnement virtuel avec la commande `python -m venv env`
 * Activer l'environnement avec `.\env\Scripts\activate` (`source env/bin/activate` sur Linux)
 * Installer les packages avec `pip install -r .\requirements.txt`

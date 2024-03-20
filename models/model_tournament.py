@@ -13,7 +13,6 @@ class Tournoi:
         nom_tournoi=None,
         lieu=None,
         date=None,
-        # controle_temps=None,
         description=None,
         nombre_tours=None,
         nombre_joueurs=None,
@@ -29,8 +28,6 @@ class Tournoi:
         :type lieu: str
         :param date: date du tournoi, plusieurs jours possible
         :type date: str
-        :param controle_temps: bullet, blitz ou coup rapide
-        :type controle_temps: str
         :param description: description du tournoi
         :type description: str
         :param nombre_tours: 4 tours par défaut
@@ -52,7 +49,6 @@ class Tournoi:
         self.nom = nom_tournoi
         self.lieu = lieu
         self.date = date
-        # self.controle_temps = controle_temps
         self.description = description
         self.nombre_tours = nombre_tours
         self.nombre_joueurs = nombre_joueurs
@@ -66,7 +62,6 @@ class Tournoi:
             f"ID: {self.id_tournoi}\n"
             f"Lieu: {self.lieu},\n"
             f"Date: {self.date},\n"
-            # f"Contrôle du temps: {self.controle_temps},\n"
             f"Description: {self.description},\n"
             f"Nombre de tours: {self.nombre_tours},\n"
             f"Nombre de joueurs: {len(self.ids_scores_joueurs)},\n"
@@ -87,7 +82,6 @@ class Tournoi:
         lieu = tournoi_sauve["Lieu"]
         date = tournoi_sauve["Date"]
         nombre_tours = tournoi_sauve["Nombre de tours"]
-        # controle_temps = tournoi_sauve["Controle du temps"]
         description = tournoi_sauve["Description"]
         liste_joueurs = tournoi_sauve["Liste joueurs"]
         nombre_joueurs = tournoi_sauve["Nombre de joueurs"]
@@ -97,7 +91,6 @@ class Tournoi:
             nom,
             lieu,
             date,
-            # controle_temps,
             description,
             nombre_tours,
             nombre_joueurs,
@@ -117,7 +110,6 @@ class Tournoi:
             "Lieu": self.lieu,
             "Date": self.date,
             "Nombre de tours": self.nombre_tours,
-            # "Controle du temps": self.controle_temps,
             "Description": self.description,
             "Nombre de joueurs": self.nombre_joueurs,
             "Liste joueurs": self.ids_scores_joueurs,
