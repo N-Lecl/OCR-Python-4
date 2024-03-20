@@ -1,0 +1,17 @@
+[flake8]
+exclude =
+    .idea,
+    env,
+    tests,
+    venv,
+    .git,
+    __pycache__,
+    docs/source/conf.py,
+    old,
+    build,
+    dist
+max-line-length = 119
+format = html
+htmldir = flake8_rapport
+extend-ignore = E203
+ignore = W605

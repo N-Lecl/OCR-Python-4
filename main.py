@@ -1,8 +1,10 @@
-from controllers.main_controller import MainController
+from controllers import menu_controller
+
 
 def main():
-    main_controller = MainController()
-    main_controller.run()
+    controller = menu_controller.MenuPrincipalControleur()
+    controller()
+
 
 if __name__ == "__main__":
     main()
