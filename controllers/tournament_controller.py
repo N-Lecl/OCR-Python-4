@@ -110,9 +110,7 @@ class LancerTournoiControleur:
             while not id_valide:
                 choix = input("Choisir ID du tournoi ==> ")
                 if (
-                    choix.isdigit()
-                    and int(choix) > 0
-                    and int(choix) <= len(model_tournament.TOURNOI_DB)
+                    choix.isdigit() and int(choix) > 0 and int(choix) <= len(model_tournament.TOURNOI_DB)
                 ):
                     id_valide = True
                 else:
@@ -163,9 +161,7 @@ class LancerTournoiControleur:
             while not id_valide:
                 choix = input("Choisir ID du tournoi ==> ")
                 if (
-                    choix.isdigit()
-                    and int(choix) > 0
-                    and int(choix) <= len(model_tournament.TOURNOI_DB)
+                    choix.isdigit() and int(choix) > 0 and int(choix) <= len(model_tournament.TOURNOI_DB)
                 ):
                     id_valide = True
                 else:
@@ -376,9 +372,7 @@ class CreerTournoiControleur:
         while not entree_valide:
             nombre_joueurs = input("Entrez le nombre de participants au tournoi: ")
             if (
-                nombre_joueurs.isdigit()
-                and int(nombre_joueurs) > 1
-                and (int(nombre_joueurs) % 2) == 0
+                nombre_joueurs.isdigit() and int(nombre_joueurs) > 1 and (int(nombre_joueurs) % 2) == 0
             ):
                 entree_valide = True
             else:
@@ -411,9 +405,7 @@ class CreerTournoiControleur:
             id_choisi = input("Entrer l'ID du joueur à ajouter au tournoi: ")
             print(f"Joueurs inscrits: {self.liste_id_joueurs}\n")
             if (
-                id_choisi.isdigit()
-                and int(id_choisi) > 0
-                and int(id_choisi) <= len(self.joueur_db)
+                id_choisi.isdigit() and int(id_choisi) > 0 and int(id_choisi) <= len(self.joueur_db)
             ):
                 id_valide = True
             else:
