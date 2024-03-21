@@ -31,7 +31,7 @@ class CreerJoueurControleur:
             if nom_joueur != "" and nom_joueur.isalpha():
                 nom_valide = True
             else:
-                print("Un nom est obligatoire!")
+                main_view.Print.nom_obligatoire()
         return nom_joueur
 
     def ajout_prenom(self):
@@ -42,7 +42,7 @@ class CreerJoueurControleur:
             if prenom_joueur != "" and prenom_joueur.isalpha():
                 prenom_valide = True
             else:
-                print("Un prénom est obligatoire!")
+                main_view.Print.prenom_obligatoire()
         return prenom_joueur
 
     def ajout_anniversaire(self):
@@ -55,7 +55,7 @@ class CreerJoueurControleur:
                 jour_valide = True
                 date.append(jour)
             else:
-                print("Entrez un chiffre entre 1 et 31!")
+                main_view.Print.jour_obligatoire()
 
         mois_valide = False
         while not mois_valide:
@@ -64,7 +64,7 @@ class CreerJoueurControleur:
                 mois_valide = True
                 date.append(mois)
             else:
-                print("Entrez un chiffre entre 1 et 12!")
+                main_view.Print.mois_obligatoire()
 
         annee_valide = False
         while not annee_valide:
@@ -73,7 +73,7 @@ class CreerJoueurControleur:
                 annee_valide = True
                 date.append(annee)
             else:
-                print("Entrez un nombre à 4 chiffres!")
+                main_view.Print.annee_obligatoire()
 
         return f"{date[0]}/{date[1]}/{date[2]}"
 
@@ -87,7 +87,7 @@ class CreerJoueurControleur:
                 sexe = "F"
                 break
             else:
-                print("Entrez un choix F ou M!")
+                main_view.Print.choix_hf()
         return sexe
 
     def ajout_chess_id(self):
@@ -96,7 +96,7 @@ class CreerJoueurControleur:
             if chess_id:
                 return chess_id
             else:
-                print("Entrez un Chess ID!")
+                main_view.Print.choix_chess_id()
 
 
 class JoueurRapport:
@@ -111,7 +111,7 @@ class JoueurRapport:
         self.joueur_db = model_player.JOUEUR_DB
         self.joueur = model_player.Joueur()
         if len(self.joueur_db) == 0:
-            print("Aucun joueurs enregistrés !")
+            main_view.Print.aucun_joueurs()
             self.menu_principal_controleur()
         self.affiche_joueur = main_view.AfficheJoueurRapport()
 
@@ -125,4 +125,4 @@ class JoueurRapport:
                 case ("X" | "x"):
                     self.menu_principal_controleur()
                 case _:
-                    print("Entrée non valide")
+                    main_view.Print.entree_non_valide()

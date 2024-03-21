@@ -254,6 +254,68 @@ class ResultatsTournoi:
                 print("Entrée invalide, X pour revenir")
 
 
+class Print:
+    def afficher_message_sauvegarde():
+        print("Tournoi sauvegardé, voulez-vous quitter?\n")
+
+    def id_tournoi_valide():
+        print("Entrée invalide (Y/N)")
+
+    def tournoi_non_termine():
+        print("Pas de tournoi non terminé.")
+
+    def tournoi_non_commence():
+        print("Pas de tournoi non terminé.")
+
+    def nom_obligatoire():
+        print("Un nom est obligatoire!")
+        
+    def prenom_obligatoire():
+        print("Un prénom est obligatoire!")
+
+    def lieu_obligatoire():
+        print("Un lieu est obligatoire!")
+
+    def jour_obligatoire():
+        print("Entrez un chiffre entre 1 et 31!")
+
+    def mois_obligatoire():
+        print("Entrez un chiffre entre 1 et 12!")
+
+    def annee_obligatoire():
+        print("Entrez un nombre à 4 chiffres!")
+
+    def nombre_tours():
+        print("4 tours par défaut.\n" "Voulez-vous modifier?")
+
+    def choix_tours():
+        print("Y pour changer / N pour garder 4 tours")
+
+    def tour_erreur():
+        print("Entrez un nombre entier supérieur à 0!")
+
+    def choix_yn():
+        print("Veuillez choisir Y/N")
+
+    def description():
+        print("Entrez la DESCRIPTION du tournoi: ")
+
+    def nombre_pair_impair():
+        print("Entrez un nombre pair et positif!")
+
+    def entree_non_valide():
+        print("Entrée non valide")
+
+    def choix_hf():
+        print("Entrez un choix F ou M!")
+
+    def choix_chess_id():
+        print("Entrez un Chess ID!")
+
+    def aucun_joueurs():
+        print("Aucun joueurs enregistrés !")
+
+
 class FermerApplication:
     def __call__(self):
         Utils.clear_terminal()

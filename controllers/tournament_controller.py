@@ -80,7 +80,7 @@ class LancerTournoiControleur:
             doc_ids=[tournoi_obj.id_tournoi],
         )
 
-        print("Tournoi sauvegardé, voulez-vous quitter?\n")
+        main_view.MainView.afficher_message_sauvegarde()
         choix_valide = False
         while not choix_valide:
             choix = input("Y/N ==> ")
@@ -90,7 +90,7 @@ class LancerTournoiControleur:
             elif choix.upper() == "N":
                 choix_valide = True
             else:
-                print("Entrée invalide (Y/N)")
+                main_view.Print.id_tournoi_valide()
 
     def chargement_tournoi(self):
         """
@@ -114,7 +114,7 @@ class LancerTournoiControleur:
                 ):
                     id_valide = True
                 else:
-                    print("Entrez un ID de tournoi valide !")
+                    main_view.Print.id_tournoi_valide()
 
             tournoi_choisi = model_tournament.TOURNOI_DB.get(doc_id=int(choix))
             for tour in tournoi_choisi["Tours"]:
@@ -133,7 +133,7 @@ class LancerTournoiControleur:
                 liste_obj_joueurs.append(joueur_obj)
 
         else:
-            print("Pas de tournoi non terminé.")
+            main_view.Print.tournoi_non_termine()
             self.menu_principal_controleur()
 
         for tour in range(int(tournoi_obj.nombre_tours) - len(tournoi_obj.liste_tours)):
@@ -165,13 +165,13 @@ class LancerTournoiControleur:
                 ):
                     id_valide = True
                 else:
-                    print("Entrez un ID de tournoi valide !")
+                    main_view.Print.id_tournoi_valide()
 
             tournoi_choisi = model_tournament.TOURNOI_DB.get(doc_id=int(choix))
             tournoi_obj = self.tournoi.creer_instance_tournoi(tournoi_choisi)
             return tournoi_obj
         else:
-            print("Pas de tournoi non commencé.")
+            main_view.Print.tournoi_non_commence()
             self.menu_principal_controleur()
 
     def triage_initial(self, tournoi):
@@ -255,7 +255,7 @@ class LancerTournoiControleur:
 
 class CreerTournoiControleur:
     """
-    Crée un nouveau tournoi et l'enregistre dans la BD tournoi
+    Crée un nouveau tournoi et l'enregistre dans la DB tournoi
     """
 
     def __init__(self):
@@ -268,7 +268,6 @@ class CreerTournoiControleur:
         self.tournoi = model_tournament.Tournoi()
 
     def __call__(self):
-        print("Creation de tournoi...\n")
         self.infos_tournoi.append(self.ajout_nom())
         self.infos_tournoi.append(self.ajout_lieu())
         self.infos_tournoi.append(self.ajout_date())
@@ -280,33 +279,29 @@ class CreerTournoiControleur:
 
         self.infos_tournoi.append(dict_id_score_joueurs)
         self.tournoi.ajout_db(self.infos_tournoi)
-        print(
-            "==========================================================\n"
-            "==================Nouveau tournoi créé !==================\n"
-            "==========================================================\n"
-        )
         self.menu_principal_controleur()
 
     def ajout_nom(self):
         nom_tournoi = None
         nom_valide = False
         while not nom_valide:
-            nom_tournoi = input("Entrez le NOM du Tournoi: ")
+            nom_tournoi = input("Entrez le NOM du Tournoi: ")  
             if nom_tournoi != "":
                 nom_valide = True
             else:
-                print("Un nom est obligatoire!")
+                main_view.Print.nom_obligatoire()
         return nom_tournoi
 
     def ajout_lieu(self):
         lieu_tournoi = None
         lieu_valide = False
         while not lieu_valide:
-            lieu_tournoi = input("Entrer le LIEU du Tournoi: ")
+            lieu_tournoi = input("Entrer le lieu du Tournoi: ")
             if lieu_tournoi != "":
                 lieu_valide = True
             else:
-                print("Un lieu est obligatoire!")
+                main_view.Print.lieu_obligatoire()
+
         return lieu_tournoi
 
     def ajout_date(self):
@@ -314,54 +309,54 @@ class CreerTournoiControleur:
 
         jour_valide = False
         while not jour_valide:
-            jour = input("Entrer le JOUR du Tournoi: ")
+            jour = input("Entrer le jour du Tournoi: ")
             if jour.isdigit() and (0 < int(jour) < 32):
                 jour_valide = True
                 date.append(jour)
             else:
-                print("Entrez un chiffre entre 1 et 31!")
+                main_view.Print.jour_obligatoire()
 
         mois_valide = False
         while not mois_valide:
-            mois = input("Entrer le MOIS du Tournoi: ")
+            mois = input("Entrer le mois du Tournoi: ")
             if mois.isdigit() and (0 < int(mois) < 13):
                 mois_valide = True
                 date.append(mois)
             else:
-                print("Entrez un chiffre entre 1 et 12!")
+                main_view.Print.mois_obligatoire()
 
         annee_valide = False
         while not annee_valide:
-            annee = input("Entrer l'ANNÉE du Tournoi: ")
+            annee = input("Entrer l'année du Tournoi: ")
             if annee.isdigit() and len(annee) == 4:
                 annee_valide = True
                 date.append(annee)
             else:
-                print("Entrez un nombre à 4 chiffres!")
+                main_view.Print.annee_obligatoire()
 
         return f"{date[0]}/{date[1]}/{date[2]}"
 
     def ajout_nombre_tours(self):
         nombre_tours = 4
-        print("4 tours par défaut.\n" "Voulez-vous modifier?")
+        main_view.Print.nombre_tours()
         entree_valide = False
         while not entree_valide:
-            print("Y pour changer / N pour garder 4 tours")
+            main_view.Print.choix_tours()
             choix = input("==> ")
             if choix.upper() == "Y":
                 nombre_tours = input("Entrer un nombre de tours: ")
                 if nombre_tours.isdigit() and int(nombre_tours) > 0:
                     entree_valide = True
                 else:
-                    print("Entrez un nombre entier supérieur à 0!")
+                    main_view.Print.tour_erreur()
             if choix.upper() == "N":
                 entree_valide = True
             if choix == "":
-                print("Veuillez choisir Y/N")
+                main_view.Print.choix_yn()
         return int(nombre_tours)
 
     def ajout_description(self):
-        print("Entrez la DESCRIPTION du tournoi: ")
+        main_view.Print.description()
         description = input("==> ")
         return description
 
@@ -375,7 +370,7 @@ class CreerTournoiControleur:
             ):
                 entree_valide = True
             else:
-                print("Entrez un nombre pair et positif!")
+                main_view.Print.nombre_pair_impair()
         return int(nombre_joueurs)
 
     def ajout_joueurs(self):

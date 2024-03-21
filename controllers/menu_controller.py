@@ -23,7 +23,7 @@ def choix_menu():
             case ("X" | "x"):
                 return "x"
             case _:
-                print("Entrée non valide")
+                main_view.Print.entree_non_valide()
 
 
 class MenuPrincipalControleur:
