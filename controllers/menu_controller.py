@@ -45,6 +45,7 @@ class MenuPrincipalControleur:
         self.view.afficher_menu()
         entree = choix_menu()
 
+        # Gérer les différentes options du menu principal
         if entree == "1":
             self.controleur_actuel = tournament_controller.CreerTournoiControleur()
             self.aller_vers_creer_tournoi()

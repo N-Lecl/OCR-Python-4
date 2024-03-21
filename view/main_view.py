@@ -15,7 +15,9 @@ class MenuPrincipal:
         """
         Menu principal
         """
+        # Efface le terminal pour une meilleure lisibilité
         Utils.clear_terminal()
+        # Affichage de l'en-tête
         print(
             "----------------------------------------------------------------------------------------\n"
             "   _____           _   _                   _        _______                           _ \n"
@@ -44,7 +46,9 @@ class MenuPrincipal:
         """
         Menu de fin de tournoi
         """
+        # Efface le terminal pour une meilleure lisibilité
         Utils.clear_terminal()
+        # Affichage de l'en-tête
         print(
             "------------------------------------------------------------------------------\n"
             "  _______                           _   _______                  _         __ \n"
@@ -69,7 +73,9 @@ class MenuPrincipal:
         """
         Menu de fermeture d'application
         """
+        # Efface le terminal pour une meilleure lisibilité
         Utils.clear_terminal()
+        # Affichage de l'en-tête
         print("-----------------------------------------------------------------------------\n"
               "  __  __               _        _                                     _      \n"
               " |  \/  |             (_)      | |                                   (_)     \n"
@@ -88,7 +94,9 @@ class AfficheJoueurRapport:
     """
 
     def __call__(self, liste_joueurs):
+        # Efface le terminal pour une meilleure lisibilité
         Utils.clear_terminal()
+        # Affichage de l'en-tête
         print(
             "-----------------------------------------------------------------\n"
             "  _____        __              _                                 \n"
@@ -101,12 +109,15 @@ class AfficheJoueurRapport:
             "                            |__/                                 \n"
             "-----------------------------------------------------------------\n"
             "\n")
+
+        # Affichage des informations des joueurs
         for joueur in liste_joueurs:
             print(
                 f"Nom --- Prénom --- Date de naissance\n"
                 f"{joueur.nom_famille} {joueur.prenom} "
                 f"{joueur.date_naissance}\n"
             )
+        # Invite à appuyer sur X pour revenir
         print("Appuyer sur X pour revenir")
 
 
@@ -118,15 +129,22 @@ class AfficheTournoi:
     """
 
     def __call__(self, *args, **kwargs):
+        # Initialisation du flag indiquant s'il y a des tournois non commencés
         tournoi_non_commence = False
+        # Récupération de la base de données des tournois
         tournoi_db = model_tournament.TOURNOI_DB
+        # Parcours de la base de données des tournois
         for tournoi in tournoi_db:
+            # Vérification si le tournoi n'a pas de tours
             if not tournoi["Tours"]:
+                # Affichage des informations du tournoi non commencé
                 print(
                     f"ID Tournoi: {tournoi.doc_id}, Nom: "
                     f"{tournoi['Nom du tournoi']}, Lieu: {tournoi['Lieu']}"
                 )
+                # Mise à jour du flag indiquant qu'au moins un tournoi non commencé existe
                 tournoi_non_commence = True
+        # Retourne True si au moins un tournoi non commencé existe, sinon False
         return tournoi_non_commence
 
 
@@ -138,16 +156,23 @@ class AfficheChargementTournoi:
     """
 
     def __call__(self):
+        # Initialisation du flag indiquant s'il y a des tournois non terminés
         tournoi_non_termine = False
+        # Récupération de la base de données des tournois
         tournoi_db = model_tournament.TOURNOI_DB
+        # Parcours de la base de données des tournois
         for tournoi in tournoi_db:
+            # Vérification si le tournoi a des tours et n'est pas terminé
             if tournoi["Tours"]:
                 if len(tournoi["Tours"]) < int(tournoi["Nombre de tours"]):
+                    # Affichage des informations du tournoi non terminé
                     print(
                         f"ID Tournoi: {tournoi.doc_id}, Nom: "
                         f"{tournoi['Nom du tournoi']}, Lieu: {tournoi['Lieu']}"
                     )
+                    # Mise à jour du flag indiquant qu'au moins un tournoi non terminé existe
                     tournoi_non_termine = True
+        # Retourne True si au moins un tournoi non terminé existe, sinon False
         return tournoi_non_termine
 
 
@@ -167,8 +192,11 @@ class AfficheTour:
         :param liste_matchs: liste d'objets Match
         :type liste_matchs: list
         """
+        # Efface le terminal pour une meilleure lisibilité
         Utils.clear_terminal()
+        # Affichage du nom du tour
         print(f"-------------{tour_name}---------------\n")
+        # Parcours et affichage des matchs du tour
         for match in liste_matchs:
             print(match)
 
@@ -177,6 +205,7 @@ class AfficheTour:
         Affiche le signal pour débuter et terminer un tour.
         Enregistre l'heure de début et de fin du tour.
         """
+        # Demande à l'utilisateur d'appuyer sur Y pour commencer le tour
         print("Appuyez sur Y pour commencer le tour")
         while True:
             entree = input("==> ")
@@ -184,10 +213,12 @@ class AfficheTour:
                 break
             else:
                 print("Appuyez sur Y pour commencer le tour")
+        # Enregistre l'heure de début du tour
         date_heure = datetime.now()
         debut = date_heure.strftime("%H:%M:%S - %d/%m/%Y")
         print(f"Début du tour : {debut}\n")
 
+        # Demande à l'utilisateur d'appuyer sur Y pour indiquer que le tour est terminé
         print("Appuyez sur Y lorsque le tour est terminé")
         while True:
             entree = input("==> ")
@@ -195,6 +226,7 @@ class AfficheTour:
                 break
             else:
                 print("Appuyez sur Y lorsque le tour est terminé")
+        # Enregistre l'heure de fin du tour
         date_heure = datetime.now()
         fin = date_heure.strftime("%H:%M:%S - %d/%m/%Y")
         print(f"Fin du tour : {fin}\n")
@@ -213,7 +245,9 @@ class ResultatsTournoi:
         :param liste_joueurs_tournoi: liste d'objets Joueur
         :type liste_joueurs_tournoi: list
         """
+        # Efface le terminal pour une meilleure lisibilité
         Utils.clear_terminal()
+        # Affichage de l'en-tête
         print(
             "-----------------------------------------------------------------------------\n"
             "  _____   __            _ _        _     _______                           _ \n"
@@ -225,6 +259,8 @@ class ResultatsTournoi:
             "                                                                             \n"
             "-----------------------------------------------------------------------------\n"
         )
+
+        # Affichage des résultats des matchs
         for tour in tournoi_obj.liste_tours:
             print(tour)
 
@@ -239,6 +275,7 @@ class ResultatsTournoi:
                     f"RESULTAT: {score_joueur_1} VS {score_joueur_2}\n"
                 )
 
+        # Affichage du classement des joueurs par points
         liste_joueurs_tournoi.sort(key=attrgetter("total_points_tournoi"), reverse=True)
         print("Classement des joueurs par points: ")
         for joueur in liste_joueurs_tournoi:
@@ -247,6 +284,7 @@ class ResultatsTournoi:
                 f"{joueur.total_points_tournoi}"
             )
 
+        # Attente de l'entrée de l'utilisateur pour revenir au menu
         print("Appuyez sur X pour revenir au menu...")
         choix_valide = False
         while not choix_valide:
@@ -393,7 +431,9 @@ class FermerApplication:
     Affiche le message d'aurevoir dans le terminal
     """
     def __call__(self):
+        # Efface le terminal pour une meilleure lisibilité
         Utils.clear_terminal()
+        # Affichage de l'en-tête
         print("-----------------------------------------------------------------------------\n"
               "  __  __               _        _                                     _      \n"
               " |  \/  |             (_)      | |                                   (_)     \n"

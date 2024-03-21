@@ -13,14 +13,19 @@ class CreerJoueurControleur:
         self.menu_principal_controleur = menu_controller.MenuPrincipalControleur()
 
     def __call__(self):
+        # Initialisation du modèle joueur
         self.model_player = model_player.Joueur()
+        # Saisie des informations sur le joueur
         self.infos_joueur.append(self.ajout_nom())
         self.infos_joueur.append(self.ajout_prenom())
         self.infos_joueur.append(self.ajout_chess_id())
         self.infos_joueur.append(self.ajout_anniversaire())
         self.infos_joueur.append(self.ajout_sexe())
+        # Ajout du joueur à la base de données
         self.model_player.ajout_db(self.infos_joueur)
+        # Réinitialisation de la liste d'informations du joueur
         self.infos_joueur.clear()
+        # Retour au menu principal
         self.menu_principal_controleur()
 
     def ajout_nom(self):
@@ -148,7 +153,10 @@ class JoueurRapport:
         for joueur in self.joueur_db:
             liste_joueurs.append(self.joueur.creer_instance_joueur(joueur))
 
+        # Affichage de la liste des joueurs
         self.affiche_joueur(liste_joueurs)
+
+        # Boucle pour gérer les interactions avec l'utilisateur
         while True:
             entree = input("==> ")
             match entree:

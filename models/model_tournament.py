@@ -42,6 +42,7 @@ class Tournoi:
         :param id_tournoi: ID du tournoi
         :type id_tournoi: int
         """
+        # Initialise les attributs de l'instance
         if ids_scores_joueurs is None:
             ids_scores_joueurs = []
         if liste_tours is None:
@@ -57,6 +58,12 @@ class Tournoi:
         self.id_tournoi = id_tournoi
 
     def __str__(self):
+        """
+        Méthode spéciale pour obtenir une représentation en chaîne d'un objet Tournoi.
+
+        Returns:
+            str: Une chaîne représentant les détails du tournoi.
+        """
         return (
             f"----Tournoi: {self.nom}----,\n"
             f"ID: {self.id_tournoi}\n"
@@ -68,6 +75,9 @@ class Tournoi:
         )
 
     def __repr__(self):
+        """
+        Méthode spéciale pour obtenir une représentation en chaîne de l'objet Tournoi.
+        """
         return str(self)
 
     def creer_instance_tournoi(self, tournoi_sauve):
@@ -78,6 +88,7 @@ class Tournoi:
         :return: un Tournoi
         :rtype: object Tournoi
         """
+        # Crée une nouvelle instance de Tournoi avec les informations sauvegardées
         nom = tournoi_sauve["Nom du tournoi"]
         lieu = tournoi_sauve["Lieu"]
         date = tournoi_sauve["Date"]
@@ -105,6 +116,7 @@ class Tournoi:
         :return: dictionnaire contenant les informations d'un tournoi
         :rtype: dict
         """
+        # Sérialise les informations du tournoi
         tournoi_serialise = {
             "Nom du tournoi": self.nom,
             "Lieu": self.lieu,
@@ -119,10 +131,12 @@ class Tournoi:
 
     def ajout_db(self, infos_tournoi):
         """
-        Méthode d'ajout d'un tournoi à la DB tournoi
-        :param infos_tournoi: liste des informations du tournoi
-        :type infos_tournoi: list
+        Méthode d'ajout d'un tournoi à la base de données de tournoi.
+
+        Args:
+            infos_tournoi (list): Liste des informations du tournoi.
         """
+        # Crée une instance de Tournoi avec les informations fournies et l'ajoute à la base de données
         tournoi = Tournoi(
             infos_tournoi[0],
             infos_tournoi[1],
@@ -131,7 +145,6 @@ class Tournoi:
             infos_tournoi[4],
             infos_tournoi[5],
             infos_tournoi[6],
-
         )
         id_tournoi = TOURNOI_DB.insert(tournoi.serialise())
         TOURNOI_DB.update({"ID Tournoi": id_tournoi}, doc_ids=[id_tournoi])
