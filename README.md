@@ -12,7 +12,7 @@ Il permet de :
 ## Utilisation
 ### Prérequis
 * Un terminal (par exemple Windows PowerShell)
-* Python3 version >= 3.10 (vérifier avec `python -V`)
+* Python
 
 ### 1 - Télécharger les fichiers
 * Télécharger le zip depuis le lien: 
