@@ -285,7 +285,7 @@ class CreerTournoiControleur:
         nom_tournoi = None
         nom_valide = False
         while not nom_valide:
-            nom_tournoi = input("Entrez le NOM du Tournoi: ")  
+            nom_tournoi = input("Entrez le NOM du Tournoi: ")
             if nom_tournoi != "":
                 nom_valide = True
             else:

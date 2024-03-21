@@ -269,7 +269,7 @@ class Print:
 
     def nom_obligatoire():
         print("Un nom est obligatoire!")
-        
+
     def prenom_obligatoire():
         print("Un prénom est obligatoire!")
 
