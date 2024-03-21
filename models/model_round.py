@@ -21,19 +21,13 @@ class Tour:
         :param liste_matchs_termines: liste des matchs terminés du tour
         :type liste_matchs_termines: list
         """
-        self.nom_tour = nom_tour  # Initialise le nom du tour
-        self.date_debut = date_debut  # Initialise la date de début du tour
-        self.date_fin = date_fin  # Initialise la date de fin du tour
-        self.liste_matchs_termines = liste_matchs_termines  # Initialise la liste des matchs terminés du tour
-        self.liste_tours = []  # Initialise la liste des tours
+        self.nom_tour = nom_tour
+        self.date_debut = date_debut
+        self.date_fin = date_fin
+        self.liste_matchs_termines = liste_matchs_termines
+        self.liste_tours = []
 
     def __str__(self):
-        """
-        Méthode spéciale pour obtenir une représentation en chaîne d'un objet Tour.
-
-        Returns:
-            str: Une chaîne représentant les détails du tour.
-        """
         return (
             f"----Tour: {self.nom_tour}----,\n"
             f"Date de début: {self.date_debut},\n"
@@ -41,9 +35,6 @@ class Tour:
         )
 
     def __repr__(self):
-        """
-        Méthode spéciale pour obtenir une représentation en chaîne de l'objet Tour.
-        """
         return str(self)
 
     def creer_instance_tour(self, tour_sauve):
@@ -54,7 +45,6 @@ class Tour:
         :return: un Tour
         :rtype: object Tour
         """
-        # Crée une nouvelle instance de Tour avec les informations sauvegardées
         nom = tour_sauve["Nom"]
         date_debut = tour_sauve["Debut"]
         date_fin = tour_sauve["Fin"]
@@ -67,7 +57,6 @@ class Tour:
         :return dictionnaire contenant les informations d'un tour
         :rtype: dict
         """
-        # Sérialise les informations du tour
         tour_serialise = {
             "Nom": self.nom_tour,
             "Debut": self.date_debut,
@@ -86,28 +75,26 @@ class Tour:
         :return: un Tour
         :rtype: object Tour
         """
-        # Initialise et lance le tour
-        self.nom_tour = f"Tour {len(tournoi_obj.liste_tours) + 1}"  # Nomme le tour
-        self.vue = main_view.AfficheTour()  # Initialise la vue du tour
-        self.liste_tours = []  # Initialise la liste des matchs du tour
-        self.liste_matchs_termines = []  # Initialise la liste des matchs terminés du tour
+        # Définition du nom du tour et initialisation des listes
+        self.nom_tour = f"Tour {len(tournoi_obj.liste_tours) + 1}"
+        self.vue = main_view.AfficheTour()
+        self.liste_tours = []
+        self.liste_matchs_termines = []
 
-        # Crée les matchs pour le tour en cours
+        # Création des matchs pour ce tour
         while len(liste_joueurs_trie) > 0:
             match = model_match.Match(
                 self.nom_tour, liste_joueurs_trie[0], liste_joueurs_trie[1]
-            )  # Crée un nouveau match
-            model_match.Match.NUMERO_MATCH += 1  # Incrémente le numéro de match
-            self.liste_tours.append(match)  # Ajoute le match à la liste des matchs du tour
-            del liste_joueurs_trie[0:2]  # Supprime les joueurs concernés de la liste
+            )
+            model_match.Match.NUMERO_MATCH += 1
+            self.liste_tours.append(match)
+            del liste_joueurs_trie[0:2]
 
-        # Affiche les détails du tour
+        # Affichage du tour et saisie des dates de début et de fin
         self.vue.affiche_tour(self.nom_tour, self.liste_tours)
-
-        # Récupère les dates de début et de fin du tour
         self.date_debut, self.date_fin = self.vue.affiche_date_heure_tour()
 
-        # Gère les résultats des matchs
+        # Saisie des résultats des matchs
         for match in self.liste_tours:
             resultat_valide = False
             while not resultat_valide:
@@ -120,14 +107,24 @@ class Tour:
                 resultat_joueur_2 = None
                 if resultat_joueur_1 in ("0", "1", "n", "N"):
                     resultat_valide = True
-                    # Définit les résultats des joueurs en fonction de l'entrée de l'utilisateur
+                    # Détermination des résultats des joueurs
+                    match resultat_joueur_1:
+                        case "0":
+                            resultat_joueur_1 = 0
+                            resultat_joueur_2 = 1
+                        case "1":
+                            resultat_joueur_1 = 1
+                            resultat_joueur_2 = 0
+                        case ("n" | "N"):
+                            resultat_joueur_2 = resultat_joueur_1 = 0.5
+                    # Mise à jour des résultats des matchs et des points des joueurs
                     match.resultat_joueur_1 = resultat_joueur_1
                     match.joueur_1.total_points_tournoi += resultat_joueur_1
                     match.resultat_joueur_2 = resultat_joueur_2
                     match.joueur_2.total_points_tournoi += resultat_joueur_2
                 else:
                     continue
-            # Ajoute les résultats des matchs à la liste des matchs terminés du tour
+            # Enregistrement des résultats des matchs
             self.liste_matchs_termines.append(
                 (
                     [match.joueur_1.id_joueur, match.resultat_joueur_1],
@@ -135,7 +132,7 @@ class Tour:
                 )
             )
 
-        # Retourne une nouvelle instance de Tour avec les résultats
+        # Création et retour d'un nouvel objet Tour avec les données mises à jour
         return Tour(
             self.nom_tour, self.date_debut, self.date_fin, self.liste_matchs_termines
         )

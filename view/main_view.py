@@ -2,7 +2,7 @@ from datetime import datetime
 from operator import attrgetter
 
 from models import model_tournament, model_player, model_match
-from utils.utils import Utils
+# from utils.utils import Utils
 import sys
 
 
@@ -16,7 +16,7 @@ class MenuPrincipal:
         Menu principal
         """
         # Efface le terminal pour une meilleure lisibilité
-        Utils.clear_terminal()
+        # Utils.clear_terminal()
         # Affichage de l'en-tête
         print(
             "----------------------------------------------------------------------------------------\n"
@@ -47,7 +47,7 @@ class MenuPrincipal:
         Menu de fin de tournoi
         """
         # Efface le terminal pour une meilleure lisibilité
-        Utils.clear_terminal()
+        # Utils.clear_terminal()
         # Affichage de l'en-tête
         print(
             "------------------------------------------------------------------------------\n"
@@ -74,7 +74,7 @@ class MenuPrincipal:
         Menu de fermeture d'application
         """
         # Efface le terminal pour une meilleure lisibilité
-        Utils.clear_terminal()
+        # Utils.clear_terminal()
         # Affichage de l'en-tête
         print("-----------------------------------------------------------------------------\n"
               "  __  __               _        _                                     _      \n"
@@ -95,7 +95,7 @@ class AfficheJoueurRapport:
 
     def __call__(self, liste_joueurs):
         # Efface le terminal pour une meilleure lisibilité
-        Utils.clear_terminal()
+        # Utils.clear_terminal()
         # Affichage de l'en-tête
         print(
             "-----------------------------------------------------------------\n"
@@ -193,7 +193,7 @@ class AfficheTour:
         :type liste_matchs: list
         """
         # Efface le terminal pour une meilleure lisibilité
-        Utils.clear_terminal()
+        # Utils.clear_terminal()
         # Affichage du nom du tour
         print(f"-------------{tour_name}---------------\n")
         # Parcours et affichage des matchs du tour
@@ -246,7 +246,7 @@ class ResultatsTournoi:
         :type liste_joueurs_tournoi: list
         """
         # Efface le terminal pour une meilleure lisibilité
-        Utils.clear_terminal()
+        # Utils.clear_terminal()
         # Affichage de l'en-tête
         print(
             "-----------------------------------------------------------------------------\n"
@@ -432,7 +432,7 @@ class FermerApplication:
     """
     def __call__(self):
         # Efface le terminal pour une meilleure lisibilité
-        Utils.clear_terminal()
+        # Utils.clear_terminal()
         # Affichage de l'en-tête
         print("-----------------------------------------------------------------------------\n"
               "  __  __               _        _                                     _      \n"

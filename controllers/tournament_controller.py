@@ -96,7 +96,7 @@ class LancerTournoiControleur:
         )
 
         # Affichage du message de sauvegarde et gestion des choix de l'utilisateur
-        main_view.MainView.afficher_message_sauvegarde()
+        main_view.Print.afficher_message_sauvegarde()
         choix_valide = False
         while not choix_valide:
             choix = input("Y/N ==> ")
