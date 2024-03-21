@@ -321,13 +321,17 @@ class Print:
         """
         Affiche : Pas de tournoi non terminé.
         """
+        print("")
         print("Pas de tournoi non terminé.")
+        print("")
 
     def tournoi_non_commence():
         """
         AFfiche : Pas de tournoi non terminé
         """
+        print("")
         print("Pas de tournoi non terminé.")
+        print("")
 
     def nom_obligatoire():
         """

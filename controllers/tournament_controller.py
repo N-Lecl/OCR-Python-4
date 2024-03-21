@@ -4,7 +4,7 @@ from operator import attrgetter
 from controllers import menu_controller
 from models import model_player, model_tournament, model_round
 from view import main_view
-from utils.utils import Utils
+# from utils.utils import Utils
 
 
 class LancerTournoiControleur:
@@ -459,7 +459,7 @@ class CreerTournoiControleur:
         Choix des joueurs depuis la DB et les ajoute à self.liste_id_joueurs
         """
         # Efface le terminal pour une meilleure lisibilité
-        Utils.clear_terminal()
+        # Utils.clear_terminal()
         # Initialise la variable pour stocker l'ID du joueur choisi et pour vérifier si le choix est valide
         id_choisi = None
         choix_valide = False

@@ -64,6 +64,8 @@ class Tournoi:
         Returns:
             str: Une chaîne représentant les détails du tournoi.
         """
+        joueurs = sorted(self.ids_scores_joueurs.keys())
+
         return (
             f"----Tournoi: {self.nom}----,\n"
             f"ID: {self.id_tournoi}\n"
@@ -72,6 +74,7 @@ class Tournoi:
             f"Description: {self.description},\n"
             f"Nombre de tours: {self.nombre_tours},\n"
             f"Nombre de joueurs: {len(self.ids_scores_joueurs)},\n"
+            f"Liste des joueurs: {', '.join(joueurs)}\n"
         )
 
     def __repr__(self):
