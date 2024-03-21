@@ -150,7 +150,6 @@ class LancerTournoiControleur:
                 joueur_obj = self.model_player.creer_instance_joueur(joueur)
                 joueur_obj.total_points_tournoi = dict_ids_scores_joueurs[id_joueur]
                 liste_obj_joueurs.append(joueur_obj)
-
         else:
             # Aucun tournoi trouvé
             main_view.Print.tournoi_non_termine()
@@ -164,7 +163,7 @@ class LancerTournoiControleur:
                 self.tour.lancer_tour(joueurs_tries, tournoi_obj)
             )
             self.sauvegarde_tournoi(tournoi_obj)
-
+            
         # Afficher les résultats du tournoi et retourner au menu principal
         self.vue_resultats(tournoi_obj, liste_obj_joueurs)
         self.menu_principal_controleur()
