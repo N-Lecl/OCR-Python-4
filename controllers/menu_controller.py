@@ -6,7 +6,12 @@ from models import model_player
 
 
 def choix_menu():
+    """
+    Fonction permettant de capturer l'entrée de l'utilisateur dans un menu.
 
+    Returns:
+        str: La chaîne correspondant à l'option choisie par l'utilisateur.
+    """
     while True:
         entree = input("==>")
         match entree:
@@ -60,19 +65,37 @@ class MenuPrincipalControleur:
             self.aller_vers_fermer_application()
 
     def aller_vers_creer_tournoi(self):
+        """
+        Méthode permettant de naviguer vers l'écran de création d'un nouveau tournoi.
+        """
         return self.controleur_actuel()
 
     def aller_vers_lancer_tournoi(self):
+        """
+        Méthode permettant de naviguer vers l'écran de lancement d'un tournoi déjà créé.
+        """
         return self.controleur_actuel()
 
     def aller_vers_reprendre_tournoi(self):
+        """
+        Méthode permettant de naviguer vers l'écran de reprise d'un tournoi en cours.
+        """
         return self.controleur_actuel.chargement_tournoi()
 
     def aller_vers_creer_joueur(self):
+        """
+        Méthode permettant de naviguer vers l'écran de création d'un nouveau joueur.
+        """
         return self.controleur_actuel()
 
     def aller_vers_rapport_joueur(self):
+        """
+        Méthode permettant de naviguer vers l'écran de rapport sur un joueur.
+        """
         return self.controleur_actuel()
 
     def aller_vers_fermer_application(self):
+        """
+        Méthode permettant de naviguer vers l'écran de fermeture de l'application.
+        """
         return self.controleur_actuel()

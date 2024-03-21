@@ -24,6 +24,12 @@ class CreerJoueurControleur:
         self.menu_principal_controleur()
 
     def ajout_nom(self):
+        """
+        Méthode pour saisir et valider le nom d'un joueur.
+
+        Returns:
+            str: Le nom du joueur.
+        """
         nom_joueur = None
         nom_valide = False
         while not nom_valide:
@@ -35,6 +41,12 @@ class CreerJoueurControleur:
         return nom_joueur
 
     def ajout_prenom(self):
+        """
+        Méthode pour saisir et valider le prénom d'un joueur.
+
+        Returns:
+            str: Le prénom du joueur.
+        """
         prenom_joueur = None
         prenom_valide = False
         while not prenom_valide:
@@ -46,6 +58,12 @@ class CreerJoueurControleur:
         return prenom_joueur
 
     def ajout_anniversaire(self):
+        """
+        Méthode pour saisir et valider la date de naissance d'un joueur.
+
+        Returns:
+            str: La date de naissance du joueur au format JJ/MM/AAAA.
+        """
         date = []
 
         jour_valide = False
@@ -78,6 +96,12 @@ class CreerJoueurControleur:
         return f"{date[0]}/{date[1]}/{date[2]}"
 
     def ajout_sexe(self):
+        """
+        Méthode pour saisir et valider le sexe d'un joueur.
+
+        Returns:
+            str: Le sexe du joueur (F pour féminin, M pour masculin).
+        """
         while True:
             choix = input("Entrez les sexe: F ou M: ")
             if choix.upper() == "M":
@@ -91,6 +115,12 @@ class CreerJoueurControleur:
         return sexe
 
     def ajout_chess_id(self):
+        """
+        Méthode pour saisir et valider le Chess ID d'un joueur.
+
+        Returns:
+            str: Le Chess ID du joueur.
+        """
         while True:
             chess_id = input("Entrez le chess ID du joueur: ")
             if chess_id:

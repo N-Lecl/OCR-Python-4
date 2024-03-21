@@ -20,6 +20,12 @@ class Match:
         self.joueur_2 = joueur_2
 
     def __str__(self):
+        """
+        Méthode spéciale pour obtenir une représentation en chaîne d'un objet Match.
+
+        Returns:
+            str: Une chaîne représentant les détails du match à jouer, y compris les noms complets des deux joueurs.
+        """
         return (
             f"Match à jouer: {self.joueur_1.nom_famille}"
             f" {self.joueur_1.prenom} "

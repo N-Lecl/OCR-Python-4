@@ -66,6 +66,9 @@ class MenuPrincipal:
         )
 
     def fermer_application(self):
+        """
+        Menu de fermeture d'application
+        """
         Utils.clear_terminal()
         print("-----------------------------------------------------------------------------\n"
               "  __  __               _        _                                     _      \n"
@@ -255,68 +258,140 @@ class ResultatsTournoi:
 
 
 class Print:
+    """
+    Affiche les differents Prints dans le terminal
+    """
     def afficher_message_sauvegarde():
+        """
+        Affiche : Tournoi sauvegardé, voulez-vous quitter?
+        """
         print("Tournoi sauvegardé, voulez-vous quitter?\n")
 
-    def id_tournoi_valide():
+    def id_tournoi_valide_yn():
+        """
+        Affiche : Entrée invalide (Y/N)
+        """
         print("Entrée invalide (Y/N)")
 
+    def id_tournoi_valide():
+        """
+        Affiche : Entrée invalide
+        """
+        print("Entrée invalide")
+
     def tournoi_non_termine():
+        """
+        Affiche : Pas de tournoi non terminé.
+        """
         print("Pas de tournoi non terminé.")
 
     def tournoi_non_commence():
+        """
+        AFfiche : Pas de tournoi non terminé
+        """
         print("Pas de tournoi non terminé.")
 
     def nom_obligatoire():
+        """
+        AFfiche : Un nom est obligatoire!
+        """
         print("Un nom est obligatoire!")
 
     def prenom_obligatoire():
+        """
+        Affiche : Un prénom est obligatoire!
+        """
         print("Un prénom est obligatoire!")
 
     def lieu_obligatoire():
+        """
+        Affiche : Un lieu est obligatoire!
+        """
         print("Un lieu est obligatoire!")
 
     def jour_obligatoire():
+        """
+        Affiche : Entrez un chiffre entre 1 et 31!
+        """
         print("Entrez un chiffre entre 1 et 31!")
 
     def mois_obligatoire():
+        """
+        Affiche : Entrez un chiffre entre 1 et 12!
+        """
         print("Entrez un chiffre entre 1 et 12!")
 
     def annee_obligatoire():
+        """
+        Affiche : Entrez un nombre à 4 chiffres
+        """
         print("Entrez un nombre à 4 chiffres!")
 
     def nombre_tours():
+        """
+        Affiche 4 tours par défaut.\n" "Voulez-vous modifier?
+        """
         print("4 tours par défaut.\n" "Voulez-vous modifier?")
 
     def choix_tours():
+        """
+        Y pour changer / N pour garder 4 tours
+        """
         print("Y pour changer / N pour garder 4 tours")
 
     def tour_erreur():
+        """
+        Affiche : Entrez un nombre entier supérieur à 0!
+        """
         print("Entrez un nombre entier supérieur à 0!")
 
     def choix_yn():
+        """
+        Affiche : Veuillez choisir Y/N
+        """
         print("Veuillez choisir Y/N")
 
     def description():
+        """
+        Affiche : Entrez la DESCRIPTION du tournoi:
+        """
         print("Entrez la DESCRIPTION du tournoi: ")
 
     def nombre_pair_impair():
+        """
+        Affiche : Entrez un nombre pair et positif!
+        """
         print("Entrez un nombre pair et positif!")
 
     def entree_non_valide():
+        """
+        Affiche : Entrée non valide
+        """
         print("Entrée non valide")
 
     def choix_hf():
+        """
+        Affiche : Entrez un choix F ou M!
+        """
         print("Entrez un choix F ou M!")
 
     def choix_chess_id():
+        """
+        Affiche : Entrez un Chess ID!
+        """
         print("Entrez un Chess ID!")
 
     def aucun_joueurs():
+        """
+        Affiche : Aucun joueurs enregistrés !
+        """
         print("Aucun joueurs enregistrés !")
 
 
 class FermerApplication:
+    """
+    Affiche le message d'aurevoir dans le terminal
+    """
     def __call__(self):
         Utils.clear_terminal()
         print("-----------------------------------------------------------------------------\n"

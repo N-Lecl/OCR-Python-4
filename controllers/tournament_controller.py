@@ -90,7 +90,7 @@ class LancerTournoiControleur:
             elif choix.upper() == "N":
                 choix_valide = True
             else:
-                main_view.Print.id_tournoi_valide()
+                main_view.Print.id_tournoi_valide_yn()
 
     def chargement_tournoi(self):
         """
@@ -282,6 +282,12 @@ class CreerTournoiControleur:
         self.menu_principal_controleur()
 
     def ajout_nom(self):
+        """
+        Méthode pour saisir le nom du tournoi.
+
+        Returns:
+            str: Le nom du tournoi saisi par l'utilisateur.
+        """
         nom_tournoi = None
         nom_valide = False
         while not nom_valide:
@@ -293,6 +299,12 @@ class CreerTournoiControleur:
         return nom_tournoi
 
     def ajout_lieu(self):
+        """
+        Méthode pour saisir le lieu du tournoi.
+
+        Returns:
+            str: Le lieu du tournoi saisi par l'utilisateur.
+        """
         lieu_tournoi = None
         lieu_valide = False
         while not lieu_valide:
@@ -305,6 +317,12 @@ class CreerTournoiControleur:
         return lieu_tournoi
 
     def ajout_date(self):
+        """
+        Méthode pour saisir la date du tournoi.
+
+        Returns:
+            str: La date du tournoi au format JJ/MM/AAAA saisie par l'utilisateur.
+        """
         date = []
 
         jour_valide = False
@@ -337,6 +355,12 @@ class CreerTournoiControleur:
         return f"{date[0]}/{date[1]}/{date[2]}"
 
     def ajout_nombre_tours(self):
+        """
+        Méthode pour saisir le nombre de tours du tournoi.
+
+        Returns:
+            int: Le nombre de tours du tournoi saisi par l'utilisateur.
+        """
         nombre_tours = 4
         main_view.Print.nombre_tours()
         entree_valide = False
@@ -356,11 +380,23 @@ class CreerTournoiControleur:
         return int(nombre_tours)
 
     def ajout_description(self):
+        """
+        Méthode pour saisir la description du tournoi.
+
+        Returns:
+            str: La description du tournoi saisie par l'utilisateur.
+        """
         main_view.Print.description()
         description = input("==> ")
         return description
 
     def ajout_nombre_joueurs(self):
+        """
+        Méthode pour saisir le nombre de joueurs participants au tournoi.
+
+        Returns:
+            int: Le nombre de joueurs participants au tournoi saisi par l'utilisateur.
+        """
         nombre_joueurs = None
         entree_valide = False
         while not entree_valide:
