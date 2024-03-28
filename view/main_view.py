@@ -232,6 +232,16 @@ class AfficheTour:
         print(f"Fin du tour : {fin}\n")
         return debut, fin
 
+    def afficher_ajout_match(self, joueur_1, joueur_2):
+        """
+        Affiche un message indiquant l'ajout d'un match
+        :param joueur_1: Le premier joueur
+        :type joueur_1: str
+        :param joueur_2: Le deuxième joueur
+        :type joueur_2: str
+        """
+        print(f"Ajout du match {joueur_1} VS {joueur_2}\n")
+
 
 class ResultatsTournoi:
     """
@@ -428,6 +438,43 @@ class Print:
         Affiche : Aucun joueurs enregistrés !
         """
         print("Aucun joueurs enregistrés !")
+
+    def joueurs_inscrits(liste_id_joueurs):
+        """
+        Affiche les joueurs inscrits dans le tournoi.
+        :param liste_id_joueurs: Liste des identifiants des joueurs inscrits.
+        :type liste_id_joueurs: list
+        """
+        print(f"Joueurs inscrits: {liste_id_joueurs}\n")
+
+    def joueurs_disponibles(joueur_db):
+        """
+        Affiche les joueurs disponibles dans la base de données.
+        :param joueur_db: Base de données des joueurs.
+        :type joueur_db: TinyDB
+        """
+        for player in joueur_db:
+            print(
+                f"Joueur ID: {player.doc_id} - {player['Nom']} "
+                f"{player['Prenom']}"
+            )
+
+    def id_joueur_existant():
+        """
+        Affiche : Entrez une ID de joueur existant
+        """
+        print("Entrez une ID de joueur existant")
+        
+    def joueur_deja_inscrit(id_joueur, liste_id_joueurs):
+        """
+        Affiche : Le joueur est déjà dans le tournoi
+        :param id_joueur: ID du joueur déjà inscrit
+        :type id_joueur: int
+        """
+        print(
+            f"Le joueur {id_joueur} est déjà dans le tournoi !\n"
+            f"Joueurs inscrits: {liste_id_joueurs}\n"
+        )
 
 
 class FermerApplication:

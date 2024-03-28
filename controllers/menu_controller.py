@@ -37,8 +37,8 @@ class MenuPrincipalControleur:
     """
 
     def __init__(self):
-        self.view = main_view.MenuPrincipal()
-        self.model_player = model_player.Joueur()
+        self.view = main_view.MenuPrincipal()  # instance de la vue
+        self.model_player = model_player.Joueur()  # instance du modele joueurs
         self.controleur_actuel = None
 
     def __call__(self):

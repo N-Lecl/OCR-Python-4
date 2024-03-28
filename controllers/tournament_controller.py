@@ -21,6 +21,7 @@ class LancerTournoiControleur:
         self.tour = model_round.Tour()
         self.liste_joueurs_trie = []
         self.menu_principal_controleur = menu_controller.MenuPrincipalControleur()
+        self.vue_match = main_view.AfficheTour()
         self.vue_resultats = main_view.ResultatsTournoi()
         self.joueur = model_player.Joueur()
 
@@ -163,7 +164,7 @@ class LancerTournoiControleur:
                 self.tour.lancer_tour(joueurs_tries, tournoi_obj)
             )
             self.sauvegarde_tournoi(tournoi_obj)
-            
+
         # Afficher les résultats du tournoi et retourner au menu principal
         self.vue_resultats(tournoi_obj, liste_obj_joueurs)
         self.menu_principal_controleur()
@@ -228,7 +229,7 @@ class LancerTournoiControleur:
                 index_joueur_2 = index_joueur_1 + int(len(ids_joueurs) / 2)
                 joueur_2 = instances_joueurs[index_joueur_2]
 
-                print(f"Ajout du match {joueur_1} VS {joueur_2}\n")
+                self.vue_match.afficher_ajout_match(joueur_1, joueur_2)
                 liste_joueurs_tri.append(joueur_1)
                 liste_joueurs_tri.append(joueur_2)
                 self.MATCHS_JOUES.append({joueur_1.id_joueur, joueur_2.id_joueur})
@@ -277,7 +278,7 @@ class LancerTournoiControleur:
                         continue
 
             # Affichage du match ajouté
-            print(f"Ajout du match {joueur_1} VS {joueur_2}\n")
+            self.vue_match.afficher_ajout_match(joueur_1, joueur_2)
             liste_joueurs_par_score.append(joueur_1)
             liste_joueurs_par_score.append(joueur_2)
             instances_joueurs_a_trier.pop(instances_joueurs_a_trier.index(joueur_2))
@@ -466,41 +467,34 @@ class CreerTournoiControleur:
         # Demande à l'utilisateur s'il veut ajouter un joueur
         while not choix_valide:
             choix = input("Ajouter un joueur au tournoi? Y/N ==> ")
-            print(f"Joueurs inscrits: {self.liste_id_joueurs}\n")  # Affiche la liste des joueurs inscrits
+            main_view.Print.joueurs_inscrits(self.liste_id_joueurs)  # Appel de la méthode pour afficher les joueurs
             if choix.upper() == "Y":
                 choix_valide = True
             elif choix.upper() == "N":
                 return  # Sort de la méthode si l'utilisateur choisit de ne pas ajouter de joueur
 
         # Affiche les joueurs disponibles dans la base de données
-        for player in self.joueur_db:
-            print(
-                f"Joueur ID: {player.doc_id} - {player['Nom']} "
-                f"{player['Prenom']}"
-            )
+        main_view.Print.joueurs_disponibles(self.joueur_db)
 
         id_valide = False
         while not id_valide:
             # Demande à l'utilisateur l'ID du joueur à ajouter
             id_choisi = input("Entrer l'ID du joueur à ajouter au tournoi: ")
             # Affiche la liste des joueurs inscrits
-            print(f"Joueurs inscrits: {self.liste_id_joueurs}\n")
+            main_view.Print.joueurs_inscrits(self.liste_id_joueurs) 
             if (
                 id_choisi.isdigit() and int(id_choisi) > 0 and int(id_choisi) <= len(self.joueur_db)
             ):
                 id_valide = True  # Vérifie si l'ID entré est valide
             else:
-                print("Entrez une ID de joueur existant")  # Message d'erreur si l'ID entré n'est pas valide
+                main_view.Print.id_joueur_existant()  # Message d'erreur si l'ID entré n'est pas valide
         id_choisi = int(id_choisi)
         if id_choisi in self.liste_id_joueurs:
-            print(
-                f"Le joueur {id_choisi} est deja dans le tournoi !\n"
-                f"Joueurs inscrits: {self.liste_id_joueurs}\n"
-            )
+            main_view.Print.joueur_deja_inscrit(id_choisi, self.liste_id_joueurs)
             id_choisi = None
             self.ajout_joueurs()  # Appel récursif pour ajouter un autre joueur si celui-ci est déjà inscrit
 
         if id_choisi is not None:
             self.liste_id_joueurs.append(id_choisi)  # Ajoute l'ID du joueur à la liste des joueurs inscrits
-            print(f"Joueurs inscrits: {self.liste_id_joueurs}\n")  # Affiche la liste des joueurs inscrits
+            main_view.Print.joueurs_inscrits(self.liste_id_joueurs)   # Affiche la liste des joueurs inscrits
             self.ajout_joueurs()  # Appel récursif pour ajouter un autre joueur
